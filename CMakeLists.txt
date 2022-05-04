@@ -40,7 +40,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE src/Land.cc include/Land.h src/country.cpp include/country.h src/player.cpp include/player.h src/sketchpad.cpp include/sketchpad.h src/sketchpad.cpp tests/interaction_test.cpp)
+    add_library(catch2 INTERFACE src/Land.cc include/Land.h src/country.cpp include/country.h src/player.cpp include/player.h src/sketchpad.cpp include/sketchpad.h src/sketchpad.cpp tests/interaction_test.cpp include/timerclock.h)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -50,7 +50,6 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND SOURCE_FILES src/Land.cc
-        src/worldmap.cc
         src/sketchpad.cpp
         src/player.cpp
         src/country.cpp)

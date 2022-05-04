@@ -45,4 +45,38 @@ TEST_CASE("Test Add Points") {
   REQUIRE(person.getPoints() == 1000220);
 }
 
+TEST_CASE("Test neighbor connection") {
+  Land land;
+  land.setConnection();
+  REQUIRE(land.NorthAmerica->neighboringCountries[0] == land.SouthAmerica);
+  REQUIRE(land.SouthAmerica->neighboringCountries[0] == land.NorthAmerica);
+  REQUIRE(land.Europe->neighboringCountries[0] == land.China);
+  REQUIRE(land.China->neighboringCountries[0] == land.Europe);
+  REQUIRE(land.China->neighboringCountries[1] == land.Russia);
+  REQUIRE(land.Russia->neighboringCountries[1] == land.China);
+  REQUIRE(land.Russia->neighboringCountries[1] == land.Europe);
+  REQUIRE(land.Europe->neighboringCountries[1] == land.Russia);
+}
+
+TEST_CASE("Test neighbor connection") {
+  Land land;
+  land.setConnection();
+  REQUIRE(land.China->airlineToCountry[0] == land.NorthAmerica);
+  REQUIRE(land.NorthAmerica->airlineToCountry[0] == land.China);
+  REQUIRE(land.Europe->airlineToCountry[0] == land.NorthAmerica);
+  REQUIRE(land.NorthAmerica->airlineToCountry[0] == land.Europe);
+  REQUIRE(land.Europe->airlineToCountry[0] == land.SouthAmerica);
+  REQUIRE(land.SouthAmerica->airlineToCountry[0] == land.Europe);
+  REQUIRE(land.Russia->airlineToCountry[0] == land.GreenLand);
+  REQUIRE(land.GreenLand->airlineToCountry[0] == land.Russia);
+  REQUIRE(land.Austria->airlineToCountry[0] == land.SouthAmerica);
+  REQUIRE(land.SouthAmerica->airlineToCountry[0] == land.Austria);
+  REQUIRE(land.Africa->airlineToCountry[0] == land.Europe);
+  REQUIRE(land.Europe->airlineToCountry[0] == land.Africa);
+}
+
+TEST_CASE("Test timer clock") {
+  TimerClock timer;
+  REQUIRE(timer.getTimerSecond() == timer.getTimerMicroSec() * 1000);
+}
 }// namespace naivebayes

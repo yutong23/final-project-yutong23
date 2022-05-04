@@ -5,6 +5,7 @@
 #include "cinder/app/RendererGl.h"
 #include "Land.h"
 #include "player.h"
+#include "timerclock.h"
 // using worldmap::Land;
 
 namespace worldmap{
@@ -33,7 +34,6 @@ public:
    */
   void HandleBrush(const glm::vec2 &brush_screen_coords);
 
-
   void Clear();
 
   void mouseDown(ci::app::MouseEvent event) override;
@@ -50,7 +50,8 @@ private:
   const int kWindowSizeX = 1300;
   const int kWindowSizeY = 800;
   int command = 0;
-
+  bool start = false;
+  TimerClock TC;
 };
 
 }// namespace worldmap
