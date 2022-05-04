@@ -11,13 +11,16 @@ using glm::vec2;
 namespace worldmap {
 
 class Land {
- public:
+public:
+
    /*
     * Constructor of the land
     */
-   Land();
+  Land();
 
-  void Display(int command, player person) const;
+  void setConnection();
+
+  void Display(int command, player person, bool start) const;
 
   /*
     * Americas land
@@ -41,24 +44,27 @@ class Land {
 
   void AdvanceOneFrame();
 
+  void addPoint(player person) const;
+
+  void addCharacteristics(int index, player person);
   const size_t kTopLeftX = 100;
   const size_t kTopLeftY = 30;
   const size_t kDefaultWidth = 2000;
   const size_t kDefaultHeight = 2000;
   const size_t kParticleRadii = 5;
 
- private:
-  size_t width_;
-  size_t height_;
   country* NorthAmerica;
   country* SouthAmerica;
   country* Russia;
   country* China;
-  country* India;
   country* Austria;
   country* Europe;
   country* Africa;
   country* GreenLand;
+ private:
+   bool haveAdded = false;
+  size_t width_;
+  size_t height_;
 };
 
 }  // namespace worldmap
